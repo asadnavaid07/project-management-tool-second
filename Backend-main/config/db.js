@@ -223,6 +223,7 @@ async function initDatabase(poolInstance, isRealPostgres = false) {
         ALTER TABLE programs ADD COLUMN IF NOT EXISTS end_time TEXT DEFAULT '17:00';
         ALTER TABLE program_project_tasks ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
         ALTER TABLE program_project_tasks ADD COLUMN IF NOT EXISTS due_time TEXT DEFAULT '17:00';
+        ALTER TABLE daily_updates ADD COLUMN IF NOT EXISTS edited_at TIMESTAMP WITH TIME ZONE;
       `);
 
       if (isRealPostgres) {
