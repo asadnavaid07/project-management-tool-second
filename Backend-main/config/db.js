@@ -213,6 +213,16 @@ async function initDatabase(poolInstance, isRealPostgres = false) {
         -- Column & constraint migrations
         ALTER TABLE users ADD COLUMN IF NOT EXISTS remarks TEXT DEFAULT '';
         ALTER TABLE task_submissions ALTER COLUMN link DROP NOT NULL;
+        ALTER TABLE tasks ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
+        ALTER TABLE tasks ADD COLUMN IF NOT EXISTS due_time TEXT DEFAULT '17:00';
+        ALTER TABLE projects ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
+        ALTER TABLE projects ADD COLUMN IF NOT EXISTS deadline_time TEXT DEFAULT '17:00';
+        ALTER TABLE program_projects ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
+        ALTER TABLE program_projects ADD COLUMN IF NOT EXISTS deadline_time TEXT DEFAULT '17:00';
+        ALTER TABLE programs ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
+        ALTER TABLE programs ADD COLUMN IF NOT EXISTS end_time TEXT DEFAULT '17:00';
+        ALTER TABLE program_project_tasks ADD COLUMN IF NOT EXISTS start_time TEXT DEFAULT '09:00';
+        ALTER TABLE program_project_tasks ADD COLUMN IF NOT EXISTS due_time TEXT DEFAULT '17:00';
       `);
 
       if (isRealPostgres) {
